@@ -1,0 +1,15 @@
+tem folha ? {
+    adiciona valor a folha
+
+    estourou a folha ? {
+        criar folha
+        ordenar
+    } não ? {
+        comparação com valor
+        ordenar
+
+    }
+} não ? {
+    criar folha
+    adicionar valor a folha
+}
