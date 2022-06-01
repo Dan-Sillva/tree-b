@@ -13,3 +13,17 @@ tem folha ? {
     criar folha
     adicionar valor a folha
 }
+
+0=-=0=-0=10=2-30=1203=1023=10=2301=-230=12-301=2-301=941=231=023=1-023
+
+caso a lista já aponte para uma folha (root)
+    Verificar ponteiros
+    caso tenha:
+        compara com o valor de cima, se maior:
+            envia para direita
+
+        se menor:
+            envia para esquerda
+    
+    caso nao tenha:
+        somente adiciona o valor a a folha root
