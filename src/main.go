@@ -24,11 +24,17 @@ func main() {
 		leaf = F.AddValueToLeaf(leaf, vetor[1])
 		leaf = F.AddValueToLeaf(leaf, vetor[2])
 		leaf = F.AddValueToLeaf(leaf, vetor[3])
+
+		fmt.Printf("\ncheck for split:%v\n", F.CheckForSplit(leaf))
+		if F.CheckForSplit(leaf) {
+			F.Split(leaf)
+		}
+
 		list.init = &leaf;
 	}
 
-	fmt.Printf("\n{\n  root:%v,\n  values:%v,\n  pointers:%v\n}\n\n", F.Root(leaf), F.Values(leaf), F.Pointers(leaf))
+	F.Print(leaf)
 
-	if F.Root(leaf) == nil {fmt.Print}
+	// if F.Root(leaf) == nil {fmt.Println("ta nulo")}
 
 }
