@@ -27,13 +27,15 @@ func main() {
 
 		fmt.Printf("\ncheck for split:%v\n", F.CheckForSplit(leaf))
 		if F.CheckForSplit(leaf) {
-			F.Split(leaf)
+			list.init = F.Split(leaf)
+		} else {
+			list.init = &leaf;
 		}
 
-		list.init = &leaf;
+		
 	}
 
-	F.Print(leaf)
+	F.Print(list.init)
 
 	// if F.Root(leaf) == nil {fmt.Println("ta nulo")}
 

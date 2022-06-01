@@ -8,7 +8,6 @@ const size = 4
 
 // --> estrutura da pagina
 type Leaf struct {
-	root *Leaf
 	values []int
 	pointers []*Leaf
 }
@@ -21,8 +20,21 @@ func CreateLeaf() Leaf{
 	return leaf
 }
 
-func Print(leaf Leaf) {
-	fmt.Printf("\n{\n  root:%p,\n  values:%v,\n  pointers:%v\n}\n\n", leaf.root, leaf.values,  leaf.pointers)
+func recursePrint(leaf *Leaf) {
+	for _, n := range leaf.pointers {
+		if n != nil {
+			fmt.Printf("\n{\n  point:%p,\n  values:%v,\n  pointers:%v\n}\n\n", n, n.values, n.pointers)
+
+			recursePrint(n)
+		}
+	} 
+}
+
+func Print(leaf *Leaf) {
+	fmt.Printf("\n{\n  =[-ROOT-]=\n\n  values:%v,\n  pointers:%v\n}\n\n", leaf.values, leaf.pointers)
+
+	recursePrint(leaf)
+
 }
 
 func orderB(vetor []int) []int {
@@ -59,30 +71,19 @@ func CheckForSplit(leaf Leaf) bool {
 	return leaf.values[3] != 0
 }
 
-func Split(leaf Leaf) {
+func Split(leaf Leaf) *Leaf{
 	upLeaf := CreateLeaf()
 	leftLeaf := CreateLeaf()
 	rightLeaf := CreateLeaf()
 	
-	if leaf.root != nil {
+	upLeaf.values[0] = leaf.values[1]
+	upLeaf.pointers[0] = &leftLeaf
+	upLeaf.pointers[1] = &rightLeaf
 
-	} else {
+	leftLeaf.values[0] = leaf.values[0]
 
-		upLeaf.values[0] = leaf.values[1]
-		upLeaf.pointers[0] = &leftLeaf
-		upLeaf.pointers[1] = &rightLeaf
+	rightLeaf.values[0] = leaf.values[2]
+	rightLeaf.values[1] = leaf.values[3]
 
-		leftLeaf.root = &upLeaf
-		leftLeaf.values[0] = leaf.values[0]
-
-		rightLeaf.root = &upLeaf
-		rightLeaf.values[0] = leaf.values[2]
-		rightLeaf.values[1] = leaf.values[3]
-
-	}
-
-	Print(upLeaf)
-	Print(leftLeaf)
-	Print(rightLeaf)
-
+	return &upLeaf
 }
